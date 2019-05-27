@@ -3,6 +3,7 @@
 import pandas as pd
 import boto3
 import io
+import json
 
 geoj =''
 
@@ -71,6 +72,9 @@ for page in files:
         while i < len(cTemp):
             geoj = geoj + '{ "type": "Feature", "geometry": { "type": "Point", "coordinates": [' + latit +', '+ longit + ']},"properties": {"year": '+year+'"month":'+month[i]+'"avtemp": '+str(cTemp[i]) +'}}'
             i += 1
-
-#
+    
+out = open('geojson.json', 'w')
+out.write(geoj)
+out.close()
+print('All done')
 
